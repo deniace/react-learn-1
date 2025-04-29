@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app"></div>
+
+        <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+        <!-- babel script -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+        <script type="text/jsx">
+            const app = document.getElementById("app");
+
+            // manual
+            // const header = document.createElement("h1");
+            // const text = "Develop. preview, ship";
+            // const headerContent = document.createTextNode(text);
+            // header.appendChild(headerContent);
+            // app.appendChild(header);
+
+            // pake react
+
+            function Logo(){
+                return (<p>This is logo</p>);
+            }
+
+            function Title(){
+                return (<p>This is Title</p>);
+            }
+
+            function Link(){
+                return <a href="#">Link</a>;
+            }
+            function Nav(){
+                return <>
+                    <p>this is nav</p>
+                    <Link />
+                    <Link />
+                    <Link />
+                </> ;
+            }
+
+            function Header({title}){
+                console.log(title);
+                return <div>
+                    {title}
+                    <Logo />
+                    <Title />
+                    <Nav />
+                </div>;
+            }
+
+            // contoh 1
+            function Header1(props){
+                return <h1>{props.title}</h1>;
+            }
+
+            // contoh 2 template lateral
+            function Header2({title}){
+                return <h1>{`Cool ${title}`}</h1>
+            }
+
+            // contoh 3 return value
+            function createTitle(title){
+                if(title){
+                    return title;
+                }else{
+                    return "Default title";
+                }
+            }
+
+            function Header3({title}){
+                return <h1>{createTitle(title)}</h1>
+            }
+
+            // ternary operator
+            function Header4({title}){
+                return <h1>{title ? title : "defailt title dari ternary"}</h1>;
+            }
+
+
+            function Article(){
+                return (<h2> This is Article </h2>);
+            }
+
+            function Footer(){
+                return (<p>This is footer</p>);
+            }
+
+            function handleClick(){
+                console.log("Clicked");
+            }
+
+            function HomePage(){
+                const names = ['Ada lovelace', 'Grace Hopper', 'Margaret hamilton', 'Deni Ace'];
+                const [like, setLike] = React.useState(0);
+                return <div>
+                    <Header title="React" />
+                    <Header title="js" />
+
+                    <Header1 title="dot" />
+                    <Header2 title="ini dari template lateral"/>
+                    <Header3 />
+                    <Header3 title="ini header return value"/>
+
+                    <Header4 />
+                    <Header4 title="ternary" />
+
+                    <Article />
+                    <Footer />
+                    <ul>
+                        {names.map((name)=>{
+                            return <li key={name}>{name}</li>;
+                        })}
+
+                    </ul>
+
+                    <button onClick={handleClick}>Like</button>
+                </div>;
+            }
+            const root = ReactDOM.createRoot(app);
+            // root.render(<h1>Develop, Preview, Ship from react</h1>);
+            root.render(<HomePage />);
+        </script>
+    </body>
+</html>
