@@ -1,4 +1,4 @@
-import { useState } from "react";
+import LikeButton from "./like-button";
 
 function Logo() {
     return <p>This is logo</p>;
@@ -77,11 +77,6 @@ export default function HomePage() {
         "Margaret hamilton",
         "Deni Ace",
     ];
-    const [likes, setLikes] = useState(0);
-
-    function handleClick() {
-        setLikes(likes + 1);
-    }
 
     return (
         <div>
@@ -97,14 +92,14 @@ export default function HomePage() {
             <Header4 title="ternary" />
 
             <Article />
-            <Footer />
             <ul>
                 {names.map((name) => {
                     return <li key={name}>{name}</li>;
                 })}
             </ul>
 
-            <button onClick={handleClick}>Like {likes}</button>
+            <LikeButton />
+            <Footer />
         </div>
     );
 }
